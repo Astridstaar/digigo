@@ -1,0 +1,67 @@
+﻿@model digioz.Portal.Web.Models.ViewModels.ProfileViewModel
+
+@{
+    ViewBag.Title = "User Profile for " + Model.Username;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table>
+    <tr>
+        <td>
+            <a href="@Url.Action("ShowDetails", "Profile", new { userId = Model.UserID })">
+                <img src="@Url.Action("ShowAvatar", "Profile", new { userId = Model.UserID })" style="width:120px;" />
+            </a>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td style="width:100px;">
+                        <b>Username: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Username)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Name: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>City: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.City)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Country: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Country)
+                    </td>
+                </tr>
+                <tr style="border-bottom-color:#000000;">
+                    <td style="vertical-align:top;">
+                        <b>Signature: </b>
+                    </td>
+                    <td>
+                        @if (Model.Signature != null)
+                        {
+                            var signature = Model.Signature.Replace(System.Environment.NewLine, "<br />");
+
+                            <span>@Html.Raw(signature)</span>
+                        }
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+
